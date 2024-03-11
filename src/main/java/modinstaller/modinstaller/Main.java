@@ -42,7 +42,24 @@ public class Main {
             try {
                 in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             } catch (FileNotFoundException e){
-                System.out.println("Could not find any mod of id:"+id.asText());
+                HttpURLConnection con2 = (HttpURLConnection) new URL("https://api.modrinth.com/v2/project/"+id.asText()).openConnection();
+
+                con2.setRequestMethod("GET");
+
+                BufferedReader in2;
+                try {
+                    in2 = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                } catch (FileNotFoundException e2){
+                    System.out.println("Could not find any mod of id:"+id.asText());
+                    continue;
+                }
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in2.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in2.close();
+                System.out.println("Could not find any "+mapper.readTree(response.toString()).get("title")+" of version:"+version);
                 continue;
             }
 

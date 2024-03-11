@@ -18,6 +18,12 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.17.0-rc1'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'modinstaller.modinstaller.Main'
+    }
+}
+
 test {
     useJUnitPlatform()
 }
