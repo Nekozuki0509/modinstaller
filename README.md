@@ -11,9 +11,11 @@ It's a fabric mod installer that allows you to easily download fabric mods from 
 ## config file
 ```
 {
-  "_comment_" : "minecraft version",
-  "version" : "1.20.1",
-  "_comment_" : "mods Project IDs",
-  "ids" : ["P7dR8mSH"]
+  "_vcomment_" : "Version of mod to download",
+  "version" : "1.21",
+  "_bcomment_" : "Directory containing the jar of the mod to be downloaded",
+  "baseModsDir" : "C:/Users/User/AppData/Roaming/.minecraft/mods",
+  "_icomment_" : "modrinth project ID of the mod to be downloaded that is not in “baseModsDir“",
+  "ids" : []
 }
 ```
