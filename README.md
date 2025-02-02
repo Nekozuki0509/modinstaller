@@ -1,4 +1,4 @@
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Nekozuki0509/modinstaller/total?logo=github&color=blue)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Nekozuki0509/modinstaller/total?logo=github&color=blue)![GitHub Release](https://img.shields.io/github/v/release/Nekozuki0509/modinstaller?logo=github&color=blue)](https://github.com/Nekozuki0509/modinstaller/releases/latest)
 [![Discord](https://img.shields.io/discord/1241236305741090836?logo=discord&color=5765f2)](https://discord.gg/352Cdy8MjV)
 [![Static Badge](https://img.shields.io/badge/litlink-Nekozuki0509-9594f9)](https://lit.link/nekozuki0509)
 # ModInstaller
