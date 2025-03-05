@@ -1,8 +1,7 @@
 {
-  "_vcomment_" : "Version of mod to download",
-  "version" : "1.21",
-  "_bcomment_" : "Directory containing the jar of the mod to be downloaded",
-  "baseModsDir" : "C:/Users/User/AppData/Roaming/.minecraft/mods",
-  "_icomment_" : "modrinth project ID of the mod to be downloaded that is not in “baseModsDir“",
-  "ids" : []
+  "version": "",
+  "inputModsDir": "",
+  "outputModsDir": "",
+  "ids": [],
+  "replace": {}
 }

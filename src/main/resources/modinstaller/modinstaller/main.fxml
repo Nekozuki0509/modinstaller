@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modinstaller.modinstaller.MainController">
+    <top>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="0.0" prefWidth="560.0" spacing="10.0">
+                    <children>
+                        <Label text="MOD INSTALLER" textAlignment="CENTER" underline="true">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="discord" fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </HBox>
+                <GridPane prefWidth="560.0" style="-fx-border-color: #616365; -fx-border-radius: 10px; -fx-border-insets: -5px; -fx-border-width: 5px;">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints halignment="CENTER" maxWidth="55.0" minWidth="49.0" percentWidth="10.0" prefWidth="52.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="440.0" percentWidth="90.0" prefWidth="440.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Version" wrapText="true" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="System Bold" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                            <tooltip>
+                                <Tooltip text="Version of mod to download" />
+                            </tooltip>
+                        </Label>
+                        <Label text="Input" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                            <tooltip>
+                                <Tooltip text="Directory containing the jar of the mod to be downloaded" />
+                            </tooltip>
+                        </Label>
+                        <Label text="Output" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="System Bold" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                            <tooltip>
+                                <Tooltip text="Directory where mods are downloaded" />
+                            </tooltip>
+                        </Label>
+                        <TextField fx:id="version" onAction="#onReload" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="450.0" promptText="enter version..." GridPane.columnIndex="2">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="input" editable="false" onDragDropped="#onFileDragDropped" onDragEntered="#onMouseEntered" onDragExited="#onMouseExited" onDragOver="#onDragOver" onMouseClicked="#onFileChoose" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" promptText="select directory (or Drag&amp;Drop)..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="output" editable="false" onDragDropped="#onFileDragDropped" onDragEntered="#onMouseEntered" onDragExited="#onMouseExited" onDragOver="#onDragOver" onMouseClicked="#onFileChoose" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="431.0" promptText="select directory (or Drag&amp;Drop)..." GridPane.columnIndex="2" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </GridPane>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </top>
+    <center>
+        <VBox style="-fx-border-color: #616365; -fx-border-radius: 10px; -fx-border-insets: -3px; -fx-border-width: 5px;" BorderPane.alignment="CENTER">
+            <children>
+                <TitledPane fx:id="inputFilesTitledPane" text="Input Files" VBox.vgrow="ALWAYS">
+                    <content>
+                        <TableView fx:id="inputFilesTable" editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+                            <columns>
+                                <TableColumn fx:id="inputFilesDownloadColumn" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="Download">
+                                            <tooltip>
+                                                <Tooltip text="check box to select whether or not to download the right mod" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="inputFilesIdColumn" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="ID">
+                                            <tooltip>
+                                                <Tooltip text="loaded mod's ID" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="inputFilesProjectColumn" editable="false" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="Project">
+                                            <tooltip>
+                                                <Tooltip text="founded modrinth project name (click to open)" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="inputFilesFileColumn" editable="false" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="File">
+                                            <tooltip>
+                                                <Tooltip text="file name to download (click to open)" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </content>
+                    <graphic>
+                        <StackPane prefHeight="18.0" prefWidth="200.0">
+                            <children>
+                                <ProgressBar fx:id="inputFilesLoadProgress" minWidth="-Infinity" prefWidth="200.0" progress="1.0" style="-fx-accent: green;">
+                                    <tooltip>
+                                        <Tooltip text="input mods load progress" />
+                                    </tooltip>
+                                </ProgressBar>
+                                <Label fx:id="inputFilesLoadLabel">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                </TitledPane>
+                <TitledPane fx:id="idsTitledPane" text="IDs or Slugs" VBox.vgrow="ALWAYS">
+                    <content>
+                        <TableView fx:id="idsTable" editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+                            <columns>
+                                <TableColumn fx:id="idsDownloadColumn" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="Download">
+                                            <tooltip>
+                                                <Tooltip text="check box to select whether or not to download the right mod" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="idsIdColumn" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="ID or Slug">
+                                            <tooltip>
+                                                <Tooltip text="loaded modrinth project id or slug" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="idsProjectColumn" editable="false" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="Project">
+                                            <tooltip>
+                                                <Tooltip text="founded modrinth project name (click to open)" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                                <TableColumn fx:id="idsFileColumn" editable="false" prefWidth="75.0" resizable="false" sortable="false">
+                                    <graphic>
+                                        <Label text="File">
+                                            <tooltip>
+                                                <Tooltip text="file name to download (click to open)" />
+                                            </tooltip>
+                                        </Label>
+                                    </graphic>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </content>
+                    <graphic>
+                        <StackPane prefHeight="18.0" prefWidth="200.0">
+                            <children>
+                                <ProgressBar fx:id="idsLoadProgress" prefWidth="200.0" progress="1.0" style="-fx-accent: green;">
+                                    <tooltip>
+                                        <Tooltip text="modrinth project id or slug mods load progress" />
+                                    </tooltip>
+                                </ProgressBar>
+                                <Label fx:id="idsLoadLabel">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                </TitledPane>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </center>
+    <bottom>
+        <GridPane fx:id="controlGrid" hgap="10.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" />
+            </BorderPane.margin>
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="0.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <StackPane prefHeight="18.0" prefWidth="200.0">
+                    <children>
+                        <ProgressBar fx:id="downloadProgress" progress="1.0" style="-fx-accent: green;">
+                            <tooltip>
+                                <Tooltip text="download progress" />
+                            </tooltip>
+                        </ProgressBar>
+                        <Label fx:id="downloadLabel">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </StackPane>
+                <Button fx:id="addIdBtn" mnemonicParsing="false" onAction="#onAddId" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="80.0" text="Add ID" GridPane.columnIndex="1">
+                    <tooltip>
+                        <Tooltip text="add modrinth project id or slug" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="removeIdBtn" disable="true" mnemonicParsing="false" onAction="#onRemoveId" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="80.0" text="Remove ID" GridPane.columnIndex="2">
+                    <tooltip>
+                        <Tooltip text="remove selected modrinth project id or slug" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="downloadBtn" disable="true" mnemonicParsing="false" onAction="#onDownload" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="80.0" text="Download" GridPane.columnIndex="3">
+                    <tooltip>
+                        <Tooltip text="download mods" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="reloadBtn" mnemonicParsing="false" onAction="#onReload" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefWidth="80.0" text="Reload" GridPane.columnIndex="4">
+                    <tooltip>
+                        <Tooltip text="reload all mods" />
+                    </tooltip>
+                </Button>
+            </children>
+        </GridPane>
+    </bottom>
+</BorderPane>
